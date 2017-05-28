@@ -1,4 +1,6 @@
 #include "VectorLengthException.h"
+#include "SafeInput.h"
+#include "String.h"
 #include "Vector.h"
 #include "Point.h"
 #include <iostream>
@@ -95,14 +97,15 @@ std::ostream& Vector::extractor(std::ostream& out) const {
 }
 
 std::istream& Vector::inserter(std::istream& in) {
+	SafeInput<double> sin;
 	std::cout << " Моля, въведете име на вектора (латиница): ";
 	in >> name;
     std::cout << " Моля, въведете стойност за x: ";
-    in >> x;
+    sin >> x;
     std::cout << " Моля, въведете стойност за y: ";
-    in >> y;
+    sin >> y;
     std::cout << " Моля, въведете стойност за z: ";
-    in >> z;
+    sin >> z;
     return in;
 }
 

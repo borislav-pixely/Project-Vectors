@@ -16,17 +16,9 @@ char triangle_program(int);
 void clear_console();
 void error(char*);
 
-#include <iostream>
-#include "Vector.h"
-
 int main(int argc, const char* argv[]) {
 
     std::setlocale(LC_ALL, "bulgarian");
-
-	Vector A;
-	std::cin >> A;
-	std::cout << A << "\n\n\n";
-
 	bool running = true;
 
     do {

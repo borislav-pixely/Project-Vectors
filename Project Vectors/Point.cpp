@@ -1,4 +1,6 @@
 #include "Point.h"
+#include "String.h"
+#include "SafeInput.h"
 #include <iomanip>
 #include <iostream>
 
@@ -45,14 +47,15 @@ std::ostream& Point::extractor(std::ostream& out) const {
 }
 
 std::istream& Point::inserter(std::istream& in) {
+	SafeInput<double> sin;
 	std::cout << " Моля, въведете име на точката (латиница): ";
 	in >> name;
     std::cout << " Моля, въведете стойност за x: ";
-    in >> x;
+    sin >> x;
     std::cout << " Моля, въведете стойност за y: ";
-    in >> y;
+    sin >> y;
     std::cout << " Моля, въведете стойност за z: ";
-    in >> z;
+    sin >> z;
     return in;
 }
 
