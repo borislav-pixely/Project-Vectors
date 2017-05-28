@@ -2,6 +2,7 @@
 #define ELEMENT_H
 
 #include <iostream>
+#include "String.h"
 
 class Element {
     

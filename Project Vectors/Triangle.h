@@ -5,7 +5,7 @@
 #include "Element.h"
 #include <iostream>
 
-class Triangle : public Element {
+class Triangle : public Point {
     
 public:
     Triangle(const Point&, const Point&, const Point&);

@@ -12,11 +12,11 @@ Line::Line(const Point& A, const Point& B) :
 	       point(A), vector(*new Vector(A, B)) {}
 
 Vector Line::direction() const {
-	return *new Vector();
+	return Vector();
 }
 
 Vector Line::normal_vector() const {
-	return *new Vector();
+	return Vector();
 }
 
 double Line::angle_between(const Line& right) const {

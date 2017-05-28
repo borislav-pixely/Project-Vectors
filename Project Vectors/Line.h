@@ -6,11 +6,11 @@
 #include "String.h"
 #include <iostream>
 
-class Line : public Element {
+class Line : public Vector {
     
 public:
-    Line(const Point& = *new Point, const Point&  = *new Point);
-    Line(const Point& = *new Point, const Vector& = *new Vector);
+    Line(const Point& = Point(), const Point&  = Point());
+    Line(const Point& = Point(), const Vector& = Vector());
 	Line(const Line&);
     
     Vector direction() const;

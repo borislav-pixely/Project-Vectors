@@ -7,7 +7,8 @@
 #include <iomanip>
 #include <cmath>
 
-Vector::Vector(double x, double y, double z) : x(x), y(y), z(z) {}
+Vector::Vector(String name, double x, double y, double z) : 
+						    name(name), x(x), y(y), z(z) {}
 
 Vector::Vector(const Point& A, const Point& B) {
     x = B.get_x() - A.get_x();
@@ -38,7 +39,11 @@ Vector Vector::direction() const {
     double length = this->length();
     if (this->length() == 0)
         throw VectorLengthException();
-    return *new Vector(x / length, y / length, z / length);
+    return Vector("Посока", x / length, y / length, z / length);
+}
+
+String Vector::get_name() const {
+	return name.get_string();
 }
 
 double Vector::projection(const Vector& proj) const {
@@ -63,15 +68,15 @@ bool Vector::is_a_zero_vector() const {
 }
 
 Vector Vector::operator + (const Vector& right) const {
-    return *new Vector(x + right.x, y + right.y, z + right.z);
+    return Vector("Сбор", x + right.x, y + right.y, z + right.z);
 }
 
 Vector Vector::operator - (const Vector& right) const {
-    return *new Vector(x - right.x, y - right.y, z - right.z);
+    return Vector("Разлика", x - right.x, y - right.y, z - right.z);
 }
 
 Vector Vector::operator * (const double r) const {
-    return *new Vector(x * r, y * r, z * r);
+    return Vector("Произведение с число", x * r, y * r, z * r);
 }
 
 double Vector::operator * (const Vector& right) const {
@@ -79,9 +84,10 @@ double Vector::operator * (const Vector& right) const {
 }
 
 Vector Vector::operator ^ (const Vector& right) const {
-	return *new Vector(y * right.x - z * right.y,
-					   -x * right.z + z * right.x,
-					   x * right.y - y * right.x);
+	return Vector("Векторно произведение", 
+				  y * right.x - z * right.y,
+				  -x * right.z + z * right.x,
+				  x * right.y - y * right.x);
 }
 
 double Vector::operator () (const Vector& V, const Vector& W) const {

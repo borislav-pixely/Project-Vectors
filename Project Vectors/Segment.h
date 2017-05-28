@@ -5,7 +5,7 @@
 #include "Element.h"
 #include <iostream>
 
-class Segment : public Element {
+class Segment : public Line {
     
 public:
     Segment(const Line&);
