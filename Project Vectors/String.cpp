@@ -21,7 +21,7 @@ String::String(String& right) {
 }
 
 String::~String() {
-	if (string != ".")
+	if (length != 0)
 		delete[] string;
 }
 

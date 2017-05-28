@@ -9,8 +9,8 @@
 class Line : public Vector {
     
 public:
-    Line(const Point& = Point(), const Point&  = Point());
     Line(const Point& = Point(), const Vector& = Vector());
+	Line(const Point&, const Point&);
 	Line(const Line&);
     
     Vector direction() const;

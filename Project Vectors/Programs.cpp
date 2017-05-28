@@ -15,7 +15,7 @@ using std::endl;
 using std::cout;
 using std::cin;
 
-Element* element;
+Element* element[2];
 
 void error(char* errorMessage) {
 	std::cerr << " ! ГРЕШКА: " << errorMessage << " ! " << endll;
@@ -107,32 +107,56 @@ char point_program(int userInput) {
 
 char vector_program(int userInput) {
 	switch (userInput) {
-		case 1:
-		{	// Изчисляване на дължина на вектор
-			Vector A;
-			cin >> A;
-			cout << std::setprecision(4) << std::fixed
-				 << " Вектор " << A.get_name()
-				 << " има дължина " << A.length() << endll;
+		case 1:	// Изчисляване на дължина на вектор
+			element[0] = new Vector;
+			cin >> *dynamic_cast<Vector*>(element[0]);
+			cout << endl << std::setprecision(4) << std::fixed
+				 << " Векторът " << 
+				 dynamic_cast<Vector*>(element[0])->get_name()
+				 << " има дължина " << 
+				 dynamic_cast<Vector*>(element[0])->length() << endll;
+			delete element[0];
 			return resumption();
-		}
-		case 2:
-		{	// Изчисляване на посока на вектор
-			Vector A;
-			cin >> A;
-			cout << std::setprecision(4) << std::fixed
-				 << " Вектор " << A.get_name()
-				 << " има посока " << A.direction() << endll;
+		case 2: // Изчисляване на посока на вектор
+			element[0] = new Vector;
+			cin >> *dynamic_cast<Vector*>(element[0]);
+			cout << endl << std::setprecision(4) << std::fixed
+				 << " Векторът " << 
+				 dynamic_cast<Vector*>(element[0])->get_name()
+				 << " има посока " << 
+				 dynamic_cast<Vector*>(element[0])->direction() 
+				 << endll;
+			delete element[0];
 			return resumption();
-		}
-		case 3:
-		{	// Проекция на вектор върху друг вектор
-
-			cout << "Not finished";
+		case 3: // Проекция на вектор върху друг вектор
+			element[0] = new Vector;
+			element[1] = new Vector;
+			cout << " Вектор № 1" << endl;
+			cin >> *dynamic_cast<Vector*>(element[0]);
+			cout << " Вектор № 2" << endl;
+			cin >> *dynamic_cast<Vector*>(element[1]);
+			cout << endl << std::setprecision(4) << std::fixed
+				 << " Векторът " << 
+				 dynamic_cast<Vector*>(element[0])->get_name()
+				 << " проектиран върху вектора " << 
+				 dynamic_cast<Vector*>(element[1])->get_name()
+				 << " има проекция " << 
+				 dynamic_cast<Vector*>(element[0])->projection(*dynamic_cast<Vector*>(element[1]))
+				 << endll;
+			delete element[0];
+			delete element[1];
 			return resumption();
-		}
-		case 4:
-			cout << " --CASE 4--" << endll;
+		case 4: // проверка за нулев вектор
+			element[0] = new Vector;
+			cin >> *dynamic_cast<Vector*>(element[0]);
+			cout << endl << std::setprecision(4) << std::fixed
+				 << " Векторът " <<
+				 dynamic_cast<Vector*>(element[0])->get_name();
+			if (dynamic_cast<Vector*>(element[0])->is_a_zero_vector())
+				cout << " е нулев вектор." << endll;
+			else
+				cout << " не е нулев вектор." << endll;
+			delete element[0];
 			return resumption();
 		case 5:
 			cout << " --CASE 5--" << endll;

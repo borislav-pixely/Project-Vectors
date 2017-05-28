@@ -8,7 +8,7 @@
 class Point : public Element {
     
 public:
-    Point(double x = 0., double y = 0., double z = 0.);
+    Point(String name = String(), double x = 0., double y = 0., double z = 0.);
     Point& operator = (const Point&);
     Point(const Point&);
     

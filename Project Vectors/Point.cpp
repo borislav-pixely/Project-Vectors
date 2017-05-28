@@ -4,7 +4,8 @@
 #include <iomanip>
 #include <iostream>
 
-Point::Point(double x, double y, double z) : x(x), y(y), z(z) {}
+Point::Point(String name, double x, double y, double z) : 
+						   name(name), x(x), y(y), z(z) {}
 
 Point& Point::operator = (const Point& right) {
     if (this != &right) {

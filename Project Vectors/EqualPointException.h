@@ -7,9 +7,9 @@
 class EqualPointException : public std::exception {
     
 public:
-    EqualPointException(const Point& = 0,
-                        const Point& = 0,
-                        const Point& = 0);
+    EqualPointException(const Point& = Point(),
+                        const Point& = Point(),
+                        const Point& = Point());
     
 };
 

@@ -1,11 +1,13 @@
 #include <clocale>
-#define menu_options menu("main")
-#define clear_history clear_console();
-#define start_line_program while (line_program(menu("line")) == 'y') {}
-#define start_point_program while (point_program(menu("point")) == 'y') {}
-#define start_vector_program while (vector_program(menu("vector")) == 'y') {}
-#define start_segment_program while (segment_program(menu("segment")) == 'y') {}
-#define start_triangle_program while (triangle_program(menu("triangle")) == 'y') {}
+#define objects menu("main")
+#define Clear clear_console();
+#define Exit running = false;
+#define Error error("Невалиден избор");
+#define Line while (line_program(menu("line")) == 'y') {}
+#define Point while (point_program(menu("point")) == 'y') {}
+#define Vector while (vector_program(menu("vector")) == 'y') {}
+#define Segment while (segment_program(menu("segment")) == 'y') {}
+#define Triangle while (triangle_program(menu("triangle")) == 'y') {}
 
 int menu(char*);
 char line_program(int);
@@ -22,30 +24,15 @@ int main(int argc, const char* argv[]) {
 	bool running = true;
 
     do {
-        switch (menu_options) {
-            case 1:
-				start_point_program
-                break;
-            case 2:
-				start_vector_program
-                break;
-            case 3:
-				start_line_program
-                break;
-            case 4:
-				start_segment_program
-                break;
-            case 5:
-				start_triangle_program
-                break;
-			case 6:
-				clear_history
-				break;
-            case 0:
-				running = false;
-                break;
-            default:
-				error("Невалиден избор");
+        switch (objects) {
+            case 1:		Point		break;
+            case 2:		Vector		break;
+            case 3:		Line		break;
+            case 4:		Segment		break;
+            case 5:		Triangle	break;
+			case 6:		Clear		break;
+            case 0:		Exit		break;
+			default:	Error		break;
         }
     } while (running);
 

@@ -39,15 +39,17 @@ Vector Vector::direction() const {
     double length = this->length();
     if (this->length() == 0)
         throw VectorLengthException();
-    return Vector("Посока", x / length, y / length, z / length);
+    return Vector(" - посока", x / length, y / length, z / length);
 }
 
 String Vector::get_name() const {
 	return name.get_string();
 }
 
-double Vector::projection(const Vector& proj) const {
-    return this->length() * proj.length();
+Vector Vector::projection(const Vector& proj) const {
+	if (proj.length() == 0)
+		throw VectorLengthException();
+    return proj * ((*this * proj) / (proj.length() * proj.length()));
 }
 
 bool Vector::perpendicular_to(const Vector& right) const {
@@ -64,19 +66,19 @@ bool Vector::parallel_to(const Vector& right) const {
 }
 
 bool Vector::is_a_zero_vector() const {
-    return x == y == z == 0;
+    return (x == 0) && (y == 0) && (z == 0);
 }
 
 Vector Vector::operator + (const Vector& right) const {
-    return Vector("Сбор", x + right.x, y + right.y, z + right.z);
+    return Vector("- сбор", x + right.x, y + right.y, z + right.z);
 }
 
 Vector Vector::operator - (const Vector& right) const {
-    return Vector("Разлика", x - right.x, y - right.y, z - right.z);
+    return Vector("- разлика", x - right.x, y - right.y, z - right.z);
 }
 
 Vector Vector::operator * (const double r) const {
-    return Vector("Произведение с число", x * r, y * r, z * r);
+    return Vector("- произведение с число", x * r, y * r, z * r);
 }
 
 double Vector::operator * (const Vector& right) const {
@@ -84,7 +86,7 @@ double Vector::operator * (const Vector& right) const {
 }
 
 Vector Vector::operator ^ (const Vector& right) const {
-	return Vector("Векторно произведение", 
+	return Vector("- векторно произведение", 
 				  y * right.x - z * right.y,
 				  -x * right.z + z * right.x,
 				  x * right.y - y * right.x);

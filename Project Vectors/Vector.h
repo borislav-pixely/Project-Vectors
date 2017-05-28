@@ -9,7 +9,7 @@
 class Vector : public Point {
     
 public:
-    Vector(String name = " ", double x = 0., double y = 0., double z = 0.);
+    Vector(String name = String(), double x = 0., double y = 0., double z = 0.);
     Vector(const Point& A, const Point& B);
     Vector& operator = (const Vector&);
     Vector(const Vector&);
@@ -21,7 +21,7 @@ public:
 	bool is_a_zero_vector() const;
 	bool parallel_to(const Vector&) const;
     bool perpendicular_to(const Vector&) const;
-	double projection(const Vector&) const;
+	Vector projection(const Vector&) const;
     
     Vector operator + (const Vector&) const;
     Vector operator - (const Vector&) const;
