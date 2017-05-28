@@ -2,6 +2,7 @@
 #include "Vector.h"
 #include "Point.h"
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 
 Vector::Vector(double x, double y, double z) : x(x), y(y), z(z) {}
@@ -86,17 +87,21 @@ double Vector::operator () (const Vector& V, const Vector& W) const {
 }
 
 std::ostream& Vector::extractor(std::ostream& out) const {
-    return out << "\n( " << x << " )"
-               << "\n( " << y << " )"
-               << "\n( " << z << " )";
+	return out << std::setprecision(4) << std::fixed
+			   << "\n Âåêòîð " << name
+			   << "\n ( " << x << " )"
+			   << "\n ( " << y << " )"
+			   << "\n ( " << z << " )";
 }
 
 std::istream& Vector::inserter(std::istream& in) {
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° x: ";
+	std::cout << "Ìîëÿ, âúâåäåòå èìå íà âåêòîðà (ëàòèíèöà): ";
+	in >> name;
+    std::cout << "Ìîëÿ, âúâåäåòå ñòîéíîñò çà x: ";
     in >> x;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° y: ";
+    std::cout << "Ìîëÿ, âúâåäåòå ñòîéíîñò çà y: ";
     in >> y;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° z: ";
+    std::cout << "Ìîëÿ, âúâåäåòå ñòîéíîñò çà z: ";
     in >> z;
     return in;
 }

@@ -3,6 +3,7 @@
 
 #include "Point.h"
 #include "Element.h"
+#include "String.h"
 #include <iostream>
 
 class Vector : public Element {
@@ -32,6 +33,7 @@ public:
     std::istream& inserter(std::istream&);
     
 public:
+	String name;
     double x, y, z;
     
 };
