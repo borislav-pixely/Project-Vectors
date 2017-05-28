@@ -3,6 +3,11 @@
 Line::Line(const Point& point, const Vector& vector) :
            point(point), vector(vector) {}
 
+Line::Line(const Line &line) {
+	vector = line.vector;
+	point = line.point;
+}
+
 Line::Line(const Point& A, const Point& B) : 
 	       point(A), vector(*new Vector(A, B)) {}
 
@@ -47,10 +52,12 @@ std::ostream& Line::extractor(std::ostream& out) const {
 }
 
 std::istream& Line::inserter(std::istream& in) {
-    std::cout << "Моля, въведете стойности за ?: ";
+	std::cout << "Моля, въведете име за правата (латиница): ";
+	in >> name;
+    std::cout << "Моля, въведете стойности за вектора на правата: ";
     in >> vector;
-    std::cout << "Моля, въведете стойности за ?: ";
-    in >> point;
+    std::cout << "Моля, въведете стойности за точката на правата: ";
+	in >> point;
     return in;
 }
 

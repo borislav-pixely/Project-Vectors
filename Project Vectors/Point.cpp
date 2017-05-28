@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <iomanip>
 #include <iostream>
 
 Point::Point(double x, double y, double z) : x(x), y(y), z(z) {}
@@ -39,15 +40,18 @@ double Point::get_z() const {
 }
 
 std::ostream& Point::extractor(std::ostream& out) const {
-    return out << "(" << x << ", "<< y << ", " << z << ")";
+    return out <<  std::setprecision(4) << std::fixed 
+			   << "(" << x << ", "<< y << ", " << z << ")";
 }
 
 std::istream& Point::inserter(std::istream& in) {
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° x: ";
+	std::cout << " Ìîëÿ, âúâåäåòå èìå íà òî÷êàòà (ëàòèíèöà): ";
+	in >> name;
+    std::cout << " Ìîëÿ, âúâåäåòå ñòîéíîñò çà x: ";
     in >> x;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° y: ";
+    std::cout << " Ìîëÿ, âúâåäåòå ñòîéíîñò çà y: ";
     in >> y;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð·Ð° z: ";
+    std::cout << " Ìîëÿ, âúâåäåòå ñòîéíîñò çà z: ";
     in >> z;
     return in;
 }

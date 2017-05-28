@@ -1,74 +1,67 @@
 #include "String.h"
 
-String::String(char *string) {
+String::String(char* string) {
 	if (string == ".") {
 		length = 0;
 	} else {
 		length = strlen(string);
 		this->string = new char[length + 1];
-		for (size_t i = 0; i < length; i++) {
+		for (size_t i = 0; i < length; i++)
 			this->string[i] = string[i];
-		}
 		this->string[length] = '\0';
 	}
 }
 
-String::String(String &right) {
+String::String(String& right) {
 	length = right.length;
 	string = new char[length + 1];
-	for (size_t i = 0; i < length; i++) {
+	for (size_t i = 0; i < length; i++)
 		string[i] = right.string[i];
-	}
 	string[length] = '\0';
 }
 
 String::~String() {
-	if (string != ".") {
+	if (string != ".")
 		delete[] string;
-	}
 }
 
-String & String::operator = (const String &right) {
+String& String::operator = (const String& right) {
 	if (this != &right) {
 		length = right.length;
 		delete[] string;
 		string = new char[length + 1];
-		for (size_t i = 0; i < length; i++) {
+		for (size_t i = 0; i < length; i++)
 			string[i] = right.string[i];
-		}
 		string[length] = '\0';
 	}
 	return *this;
 }
 
-String & String::operator += (const String &right) {
-	char *temp = new char[length + right.length + 1];
-	for (size_t i = 0; i < length; i++) {
+String& String::operator += (const String& right) {
+	char* temp = new char[length + right.length + 1];
+	for (size_t i = 0; i < length; i++)
 		temp[i] = string[i];
-	}
-	for (size_t i = 0, j = length; i < right.length; i++) {
+	for (size_t i = 0, j = length; i < right.length; i++)
 		temp[j++] = right.string[i];
-	}
 	length += right.length;
 	temp[length] = '\0';
 	delete[] string;
 	string = new char[length + 1];
-	for (size_t i = 0; i < length; i++) {
+	for (size_t i = 0; i < length; i++)
 		string[i] = temp[i];
-	}
 	string[length] = '\0';
 	delete[] temp;
 	return *this;
 }
 
-String & String::operator += (int value) {
+String& String::operator += (int value) {
 	size_t size = 0;
 	size_t tempValue = value;
 	while (tempValue > 10) {
 		tempValue /= 10;
 		size++;
 	}
-	char *temp = new char[size + 2];
+	char* temp = new char[size + 2];
 	for (int i = size; i >= 0; i--) {
 		temp[i] = '0' + (value % 10);
 		value /= 10;
@@ -81,14 +74,12 @@ String & String::operator += (int value) {
 	return *this;
 }
 
-String String::operator + (const String &right) const {
-	char *temp = new char[length + right.length + 1];
-	for (size_t i = 0; i < length; i++) {
+String String::operator + (const String& right) const {
+	char* temp = new char[length + right.length + 1];
+	for (size_t i = 0; i < length; i++)
 		temp[i] = string[i];
-	}
-	for (size_t i = 0, j = length; i < right.length; i++) {
+	for (size_t i = 0, j = length; i < right.length; i++)
 		temp[j++] = right.string[i];
-	}
 	temp[length + right.length] = '\0';
 	String TMP(temp);
 	delete[] temp;
@@ -102,7 +93,7 @@ String String::operator + (int value) const {
 		tempValue /= 10;
 		size++;
 	}
-	char *temp = new char[size + 2];
+	char* temp = new char[size + 2];
 	for (int i = size; i >= 0; i--) {
 		temp[i] = '0' + (value % 10);
 		value /= 10;
@@ -116,13 +107,12 @@ String String::operator + (int value) const {
 	return TMP;
 }
 
-int String::set_string(char *string) {
+int String::set_string(char* string) {
 	this->length = strlen(string);
 	delete[] this->string;
 	this->string = new char[length + 1];
-	for (size_t i = 0; i < length; i++) {
+	for (size_t i = 0; i < length; i++)
 		this->string[i] = string[i];
-	}
 	this->string[length] = '\0';
 	return 0;
 }
@@ -132,7 +122,7 @@ int String::set_length(size_t length) {
 	return 0;
 }
 
-char * String::get_string() const {
+char* String::get_string() const {
 	return string;
 }
 
@@ -140,13 +130,13 @@ size_t String::get_length() const {
 	return length;
 }
 
-std::ostream & operator << (std::ostream &out, const String &object) {
+std::ostream& operator << (std::ostream& out, const String& object) {
 	out << object.get_string();
 	return out;
 }
 
-std::istream & operator >> (std::istream &in, String &object) {
-	char * temp = new char[100];
+std::istream& operator >> (std::istream& in, String& object) {
+	char* temp = new char[1024];
 	in >> temp;
 	object.set_string(temp);
 	delete[] temp;

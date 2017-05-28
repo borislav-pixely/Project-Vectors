@@ -1,5 +1,7 @@
-﻿  Vector.cpp
-c:\users\boris\onedrive - students.nbu.bg\university archive\cscb209 обектно-ориентирано програмиране\project-vectors\project vectors\vector.cpp(56): warning C4805: '==': unsafe mix of type 'bool' and type 'double' in operation
-c:\users\boris\onedrive - students.nbu.bg\university archive\cscb209 обектно-ориентирано програмиране\project-vectors\project vectors\vector.cpp(60): warning C4805: '==': unsafe mix of type 'bool' and type 'const double' in operation
+﻿  Segment.cpp
+  Line.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Programs.cpp
   Project Vectors.vcxproj -> C:\Users\boris\OneDrive - students.nbu.bg\University Archive\CSCB209 Обектно-ориентирано програмиране\Project-Vectors\Debug\Project Vectors.exe
   Project Vectors.vcxproj -> C:\Users\boris\OneDrive - students.nbu.bg\University Archive\CSCB209 Обектно-ориентирано програмиране\Project-Vectors\Debug\Project Vectors.pdb (Partial PDB)

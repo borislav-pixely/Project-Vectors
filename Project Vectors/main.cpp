@@ -25,7 +25,7 @@ int main(int argc, const char* argv[]) {
 
 	Vector A;
 	std::cin >> A;
-	std::cout << A << "\n\n\n\n";
+	std::cout << A << "\n\n\n";
 
 	bool running = true;
 

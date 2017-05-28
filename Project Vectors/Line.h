@@ -3,6 +3,7 @@
 
 #include "Vector.h"
 #include "Element.h"
+#include "String.h"
 #include <iostream>
 
 class Line : public Element {
@@ -10,6 +11,7 @@ class Line : public Element {
 public:
     Line(const Point& = *new Point, const Point&  = *new Point);
     Line(const Point& = *new Point, const Vector& = *new Vector);
+	Line(const Line&);
     
     Vector direction() const;
     Vector normal_vector() const;
@@ -26,6 +28,7 @@ public:
     std::istream& inserter(std::istream&);
     
 private:
+	String name;
     Vector vector;
     Point point;
     

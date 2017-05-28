@@ -95,13 +95,13 @@ std::ostream& Vector::extractor(std::ostream& out) const {
 }
 
 std::istream& Vector::inserter(std::istream& in) {
-	std::cout << "Моля, въведете име на вектора (латиница): ";
+	std::cout << " Моля, въведете име на вектора (латиница): ";
 	in >> name;
-    std::cout << "Моля, въведете стойност за x: ";
+    std::cout << " Моля, въведете стойност за x: ";
     in >> x;
-    std::cout << "Моля, въведете стойност за y: ";
+    std::cout << " Моля, въведете стойност за y: ";
     in >> y;
-    std::cout << "Моля, въведете стойност за z: ";
+    std::cout << " Моля, въведете стойност за z: ";
     in >> z;
     return in;
 }

@@ -2,6 +2,7 @@
 #define POINT_H
 
 #include "Element.h"
+#include "String.h"
 #include <iostream>
 
 class Point : public Element {
@@ -22,6 +23,7 @@ public:
     std::istream& inserter(std::istream&);
     
 private:
+	String name;
     double x, y, z;
     
 };
