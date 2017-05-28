@@ -1,11 +1,10 @@
 #include "Line.h"
 
 Line::Line(const Point& point, const Vector& vector) :
-                        point(point), vector(vector) {}
+           point(point), vector(vector) {}
 
-Line::Line(const Point& A, const Point& B) : point(A) {
-    vector = *new Vector(A, B);
-}
+Line::Line(const Point& A, const Point& B) : 
+	       point(A), vector(*new Vector(A, B)) {}
 
 Vector Line::direction() const {
 	return *new Vector();

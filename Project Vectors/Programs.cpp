@@ -1,5 +1,3 @@
-#define endll endl << endl
-
 #include "VectorLengthException.h"
 #include "EqualPointException.h"
 #include "Triangle.h"
@@ -9,10 +7,14 @@
 #include "Point.h"
 #include "Line.h"
 #include <iostream>
+#define endll endl << endl
 
 using std::endl;
 using std::cout;
 using std::cin;
+
+Element* element;
+//element = *new Vector(1, 1, 1);
 
 void error(char* errorMessage) {
 	std::cerr << " ! ГРЕШКА: " << errorMessage << " ! " << endll;
@@ -29,7 +31,7 @@ char resumption() {
 		return 'n';
 }
 
-void clearConsole() {
+void clear_console() {
 	char confirmation;
 	cout << " Сигурни ли сте, че искате да изчистите цялата история? (y/n): ";
 	cin >> confirmation;
@@ -40,7 +42,7 @@ void clearConsole() {
 		error("Невалиден избор");
 }
 
-char runLineProgram(int userInput) {
+char line_program(int userInput) {
 	switch (userInput) {
 		case 1:
 			cout << " --CASE 1--" << endll;
@@ -87,7 +89,7 @@ char runLineProgram(int userInput) {
 	return resumption();
 }
 
-char runPointProgram(int userInput) {
+char point_program(int userInput) {
 	switch (userInput) {
 		case 1:
 			cout << " --CASE 1--" << endll;
@@ -102,7 +104,7 @@ char runPointProgram(int userInput) {
 	return resumption();
 }
 
-char runVectorProgram(int userInput) {
+char vector_program(int userInput) {
 	switch (userInput) {
 		case 1:
 			// Изчисляване на дължина на вектор
@@ -152,14 +154,14 @@ char runVectorProgram(int userInput) {
 			break;
 		case 0:
 			return 'n';
-			break;
+			break;	
 		default:
 			error("Невалиден избор");
 	}
 	return resumption();
 }
 
-char runSegmentProgram(int userInput) {
+char segment_program(int userInput) {
 	switch (userInput) {
 		case 1:
 			cout << " --CASE 1--" << endll;
@@ -182,7 +184,7 @@ char runSegmentProgram(int userInput) {
 	return resumption();
 }
 
-char runTriangleProgram(int userInput) {
+char triangle_program(int userInput) {
 	switch (userInput) {
 		case 1:
 			cout << " --CASE 1--" << endll;

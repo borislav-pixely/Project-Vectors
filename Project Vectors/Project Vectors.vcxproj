@@ -114,6 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Element.cpp" />
     <ClCompile Include="EqualPointException.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />

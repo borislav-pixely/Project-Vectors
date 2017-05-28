@@ -6,8 +6,8 @@
 class Element {
     
 public:
-    virtual std::ostream& extractor(std::ostream&) const = 0;
-    virtual std::istream& inserter(std::istream&) = 0;
+	virtual std::ostream& extractor(std::ostream&) const;
+	virtual std::istream& inserter(std::istream&);
     
 };
 
