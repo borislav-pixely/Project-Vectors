@@ -57,10 +57,7 @@ String& String::operator += (const String& right) {
 String& String::operator += (int value) {
 	size_t size = 0;
 	size_t tempValue = value;
-	while (tempValue > 10) {
-		tempValue /= 10;
-		size++;
-	}
+	for (; tempValue > 10; tempValue /= 10, size++);
 	char* temp = new char[size + 2];
 	for (int i = size; i >= 0; i--) {
 		temp[i] = '0' + (value % 10);
