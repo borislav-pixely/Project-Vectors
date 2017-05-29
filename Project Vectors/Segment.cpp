@@ -14,20 +14,20 @@ bool Segment::operator == (const Point& point) const {
     return true;
 }
 
-std::ostream& Segment::extractor(std::ostream& out) const {
+std::ostream& Segment::inserter(std::ostream& out) const {
     return out << line;
 }
 
-std::istream& Segment::inserter(std::istream& in) {
+std::istream& Segment::extractor(std::istream& in) {
     std::cout << "Моля, въведете стойности за ?: ";
     in >> line;
     return in;
 }
 
 std::ostream& operator << (std::ostream& out, const Segment& segment) {
-    return segment.extractor(out);
+    return segment.inserter(out);
 }
 
 std::istream& operator >> (std::istream& in, Segment& segment) {
-    return segment.inserter(in);
+    return segment.extractor(in);
 }

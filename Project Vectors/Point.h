@@ -20,8 +20,8 @@ public:
     double get_z() const;
 	String get_name() const;
     
-    std::ostream& extractor(std::ostream&) const;
-    std::istream& inserter(std::istream&);
+    std::ostream& inserter(std::ostream&) const;
+    std::istream& extractor(std::istream&);
     
 private:
 	String name;

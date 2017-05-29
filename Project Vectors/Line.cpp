@@ -47,11 +47,11 @@ bool Line::operator | (const Line& right) const {
     return true;
 }
 
-std::ostream& Line::extractor(std::ostream& out) const {
+std::ostream& Line::inserter(std::ostream& out) const {
     return out << vector << point;
 }
 
-std::istream& Line::inserter(std::istream& in) {
+std::istream& Line::extractor(std::istream& in) {
 	std::cout << "Моля, въведете име за правата (латиница): ";
 	in >> name;
     std::cout << "Моля, въведете стойности за вектора на правата: ";
@@ -62,9 +62,9 @@ std::istream& Line::inserter(std::istream& in) {
 }
 
 std::ostream& operator << (std::ostream& out, const Line& line) {
-    return line.extractor(out);
+    return line.inserter(out);
 }
 
 std::istream& operator >> (std::istream& in, Line& line) {
-    return line.inserter(in);
+    return line.extractor(in);
 }

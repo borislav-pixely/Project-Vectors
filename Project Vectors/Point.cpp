@@ -46,12 +46,12 @@ String Point::get_name() const {
 	return name.get_string();
 }
 
-std::ostream& Point::extractor(std::ostream& out) const {
+std::ostream& Point::inserter(std::ostream& out) const {
     return out <<  std::setprecision(4) << std::fixed 
 			   << "(" << x << ", "<< y << ", " << z << ")";
 }
 
-std::istream& Point::inserter(std::istream& in) {
+std::istream& Point::extractor(std::istream& in) {
 	SafeInput<double> sin;
 	std::cout << " Моля, въведете име на точката (латиница): ";
 	in >> name;
@@ -65,9 +65,9 @@ std::istream& Point::inserter(std::istream& in) {
 }
 
 std::ostream& operator << (std::ostream& out, const Point& point) {
-    return point.extractor(out);
+    return point.inserter(out);
 }
 
 std::istream& operator >> (std::istream& in, Point& point) {
-    return point.inserter(in);
+    return point.extractor(in);
 }

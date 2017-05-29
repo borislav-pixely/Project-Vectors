@@ -96,7 +96,7 @@ double Vector::operator () (const Vector& V, const Vector& W) const {
     return (*this ^ V) * W;
 }
 
-std::ostream& Vector::extractor(std::ostream& out) const {
+std::ostream& Vector::inserter(std::ostream& out) const {
 	return out << std::setprecision(4) << std::fixed
 			   << "\n Вектор " << name
 			   << "\n ( " << x << " )"
@@ -104,7 +104,7 @@ std::ostream& Vector::extractor(std::ostream& out) const {
 			   << "\n ( " << z << " )";
 }
 
-std::istream& Vector::inserter(std::istream& in) {
+std::istream& Vector::extractor(std::istream& in) {
 	SafeInput<double> sin;
 	std::cout << " Моля, въведете име на вектора (латиница): ";
 	in >> name;
@@ -118,9 +118,9 @@ std::istream& Vector::inserter(std::istream& in) {
 }
 
 std::ostream& operator << (std::ostream& out, const Vector& vector) {
-    return vector.extractor(out);
+    return vector.inserter(out);
 }
 
 std::istream& operator >> (std::istream& in, Vector& vector) {
-    return vector.inserter(in);
+    return vector.extractor(in);
 }

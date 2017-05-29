@@ -1,9 +1,9 @@
 #include "Element.h"
 
-std::ostream& Element::extractor(std::ostream& out) const {
+std::ostream& Element::inserter(std::ostream& out) const {
 	return out;
 }
 
-std::istream& Element::inserter(std::istream& in) {
+std::istream& Element::extractor(std::istream& in) {
 	return in;
 }

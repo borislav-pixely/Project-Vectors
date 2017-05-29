@@ -7,9 +7,10 @@
 class Element {
     
 public:
-	virtual std::ostream& extractor(std::ostream&) const;
-	virtual std::istream& inserter(std::istream&);
+	virtual std::ostream& inserter(std::ostream&) const;
+	virtual std::istream& extractor(std::istream&);
     
 };
+
 
 #endif /* ELEMENT_H */

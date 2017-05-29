@@ -15,8 +15,8 @@ public:
     const char* type() const;
     Point medicenter() const;
     
-    std::ostream& extractor(std::ostream&) const;
-    std::istream& inserter(std::istream&);
+    std::ostream& inserter(std::ostream&) const;
+    std::istream& extractor(std::istream&);
     
 private:
     Point A, B, C;
