@@ -92,13 +92,26 @@ char line_program(int userInput) {
 
 char point_program(int userInput) {
 	switch (userInput) {
-		case 1:
-			cout << " --CASE 1--" << endll;
+		case 1: // Проверка дали дадена точка съвпада с друга точка
+			element[0] = new Point;
+			element[1] = new Point;
+			cout << " Точка № 1" << endl;
+			cin >> *dynamic_cast<Point*>(element[0]);
+			cout << " Точка № 2" << endl;
+			cin >> *dynamic_cast<Point*>(element[1]);
+			cout << endl << std::setprecision(4) << std::fixed
+				 << " Точка " <<
+				 dynamic_cast<Point*>(element[0])->get_name();
+			if (*dynamic_cast<Point*>(element[0]) == *dynamic_cast<Point*>(element[1]))
+				 cout << " съвпада с точка ";
+			else
+				 cout << " не съвпада с точка ";
+				 cout << dynamic_cast<Point*>(element[1])->get_name() << "." << endll;
+			delete element[0];
+			delete element[1];
 			return resumption();
-			
-		case 0:
-			return 'n';
-			
+		case 0: // Изход
+			return 'n';			
 		default:
 			error("Невалиден избор");
 	}
@@ -111,7 +124,7 @@ char vector_program(int userInput) {
 			element[0] = new Vector;
 			cin >> *dynamic_cast<Vector*>(element[0]);
 			cout << endl << std::setprecision(4) << std::fixed
-				 << " Векторът " << 
+				 << " Вектор " << 
 				 dynamic_cast<Vector*>(element[0])->get_name()
 				 << " има дължина " << 
 				 dynamic_cast<Vector*>(element[0])->length() << endll;
@@ -121,11 +134,12 @@ char vector_program(int userInput) {
 			element[0] = new Vector;
 			cin >> *dynamic_cast<Vector*>(element[0]);
 			cout << endl << std::setprecision(4) << std::fixed
-				 << " Векторът " << 
-				 dynamic_cast<Vector*>(element[0])->get_name()
-				 << " има посока " << 
-				 dynamic_cast<Vector*>(element[0])->direction() 
-				 << endll;
+				 << " Вектор " <<
+				 dynamic_cast<Vector*>(element[0])->get_name();
+			try {
+				cout << dynamic_cast<Vector*>(element[0])->direction()
+					 << endll;
+			} catch (VectorLengthException e) {}			
 			delete element[0];
 			return resumption();
 		case 3: // Проекция на вектор върху друг вектор
@@ -136,13 +150,14 @@ char vector_program(int userInput) {
 			cout << " Вектор № 2" << endl;
 			cin >> *dynamic_cast<Vector*>(element[1]);
 			cout << endl << std::setprecision(4) << std::fixed
-				 << " Векторът " << 
+				 << " Вектор " <<
 				 dynamic_cast<Vector*>(element[0])->get_name()
-				 << " проектиран върху вектора " << 
-				 dynamic_cast<Vector*>(element[1])->get_name()
-				 << " има проекция " << 
-				 dynamic_cast<Vector*>(element[0])->projection(*dynamic_cast<Vector*>(element[1]))
-				 << endll;
+				 << " проектиран върху вектор " <<
+				 dynamic_cast<Vector*>(element[1])->get_name();
+			try {
+				cout << dynamic_cast<Vector*>(element[0])->
+						projection(*dynamic_cast<Vector*>(element[1])) << endll;
+			} catch (VectorLengthException e) {}
 			delete element[0];
 			delete element[1];
 			return resumption();

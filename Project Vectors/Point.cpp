@@ -42,6 +42,10 @@ double Point::get_z() const {
     return z;
 }
 
+String Point::get_name() const {
+	return name.get_string();
+}
+
 std::ostream& Point::extractor(std::ostream& out) const {
     return out <<  std::setprecision(4) << std::fixed 
 			   << "(" << x << ", "<< y << ", " << z << ")";

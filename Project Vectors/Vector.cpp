@@ -39,7 +39,7 @@ Vector Vector::direction() const {
     double length = this->length();
     if (this->length() == 0)
         throw VectorLengthException();
-    return Vector(" - посока", x / length, y / length, z / length);
+    return Vector("- посока", x / length, y / length, z / length);
 }
 
 String Vector::get_name() const {
@@ -49,7 +49,7 @@ String Vector::get_name() const {
 Vector Vector::projection(const Vector& proj) const {
 	if (proj.length() == 0)
 		throw VectorLengthException();
-    return proj * ((*this * proj) / (proj.length() * proj.length()));
+	return (proj * ((*this * proj) / (proj.length() * proj.length())));
 }
 
 bool Vector::perpendicular_to(const Vector& right) const {

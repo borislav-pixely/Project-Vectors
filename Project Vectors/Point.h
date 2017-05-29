@@ -18,6 +18,7 @@ public:
     double get_x() const;
     double get_y() const;
     double get_z() const;
+	String get_name() const;
     
     std::ostream& extractor(std::ostream&) const;
     std::istream& inserter(std::istream&);
