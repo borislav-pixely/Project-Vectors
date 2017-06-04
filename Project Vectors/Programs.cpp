@@ -18,7 +18,7 @@ using std::cin;
 Element* element[2];
 
 void error(char* errorMessage) {
-	std::cerr << " ! ГРЕШКА: " << errorMessage << " ! " << endll;
+	std::cerr << " Грешка: " << errorMessage << "! " << endll;
 }
 
 char ask_for(const char* operation) {
@@ -120,7 +120,6 @@ char line_program(int userInput) {
 		default:
 			error("Невалиден избор");
 	}
-
 	return exit();
 }
 
@@ -140,7 +139,6 @@ char point_program(int userInput) {
 		default:
 			error("Невалиден избор");
 	}
-
 	return exit();
 }
 
@@ -221,7 +219,6 @@ char vector_program(int userInput) {
 		default:
 			error("Невалиден избор");
 	}
-
 	return exit();
 }
 
@@ -242,7 +239,6 @@ char segment_program(int userInput) {
 		default:
 			error("Невалиден избор");
 	}
-
 	return exit();
 }
 
@@ -283,6 +279,5 @@ char triangle_program(int userInput) {
 		default:
 			error("Невалиден избор");
 	}
-
 	return exit();
 }
