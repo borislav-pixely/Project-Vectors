@@ -3,5 +3,5 @@
 #include <iostream>
 
 VectorLengthException::VectorLengthException() {
-    std::cerr << std::endl << " VECTOR LENGTH EXCEPTION" << std::endl;
+    std::cerr << std::endl << " Vector Length Exception" << std::endl;
 }
