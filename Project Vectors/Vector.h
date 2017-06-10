@@ -31,6 +31,7 @@ public:
     double operator () (const Vector&, const Vector&) const;
     
     std::ostream& inserter(std::ostream&) const;
+	std::istream& extractor(std::ifstream&);
     std::istream& extractor(std::istream&);
     
 public:

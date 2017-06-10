@@ -123,6 +123,7 @@
     <ClCompile Include="Programs.cpp" />
     <ClCompile Include="Segment.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="Tetrahedron.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="VectorLengthException.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="SafeInput.h" />
     <ClInclude Include="Segment.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Tetrahedron.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="VectorLengthException.h" />
