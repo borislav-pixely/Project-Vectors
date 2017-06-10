@@ -1,6 +1,9 @@
-#include <iostream>
 #define endll endl << endl
 
+#include <iostream>
+#include <fstream>
+
+using std::ifstream;
 using std::endl;
 using std::cout;
 using std::cin;
@@ -8,10 +11,21 @@ using std::cin;
 void show(char*);
 void error(char*);
 
-int menu(char* menu) {
+int menu(char* menu, char* input) {
 	unsigned short userInput = 0;
-	show(menu);
-	cin >> userInput;
+	if (input == "cin") {
+		show(menu);
+		cin >> userInput;
+	} else if (input == "file") {
+		ifstream file("input.txt");
+		if (!file) {
+			error("Файлът \"input.txt\" не съществува, моля създайте го");
+			return -1;
+		} else {
+			show(menu);
+			file >> userInput;
+		}
+	}
 	cout << endl;
 	return userInput;
 }
@@ -26,6 +40,7 @@ void show(char* menu) {
 		<< " 4 - Отсечка" << endl
 		<< " 5 - Триъгълник" << endl
 		<< " 6 - Изчистване на конзолата" << endl
+		<< " 7 - Прочитане на файл с операции" << endl
 		<< " 0 - ИЗХОД" << endll
 		<< " Вашият избор: ";
 	else if (menu == "line")

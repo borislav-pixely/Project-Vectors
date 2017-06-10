@@ -1,3 +1,6 @@
+#define endll endl << endl
+#define NDEBUG
+
 #include "VectorLengthException.h"
 #include "EqualPointException.h"
 #include "SafeInput.h"
@@ -9,26 +12,20 @@
 #include "Line.h"
 #include <iomanip>
 #include <iostream>
-#define endll endl << endl
+#include <assert.h>
 
 using std::endl;
 using std::cout;
 using std::cin;
 
-Element* element[2];
+Element* element[3];
 
 void error(char* errorMessage) {
 	std::cerr << " Грешка: " << errorMessage << "! " << endll;
 }
 
-char ask_for(const char* operation) {
+char get_answer() {
 	char confirmation = 'n';
-	if (operation == "resumption")
-		cout << " Искате ли нова операция? (y/n): ";
-	else if (operation == "previous")
-		cout << " Искате ли да използвате предишният обект? (y/n): ";
-	else if (operation == "clear")
-		cout << " Сигурни ли сте, че искате да изчистите цялата история? (y/n): ";
 	cin >> confirmation;
 	if (confirmation == 'y' || confirmation == 'Y')
 		return 'y';
@@ -36,42 +33,53 @@ char ask_for(const char* operation) {
 		return 'n';
 }
 
+template <typename T>
+char previous(int i = 0) {
+	cout << " Искате ли да използвате предишния обект "
+		 << dynamic_cast<T*>(element[i])->get_name() << "? (y/n): ";
+	return get_answer();
+}
+
+char resumption() {
+	cout << " Искате ли нова операция? (y/n): ";
+	return get_answer();
+}
+
+char confirm_clear() {
+	cout << " Сигурни ли сте, че искате да изчистите цялата история? (y/n): ";
+	return get_answer();
+}
+
 void clear_console() {
-	if (ask_for("clear") == 'y')
+	if (confirm_clear() == 'y')
 		system("cls");
 }
 
 template <typename T>
 void get_object(unsigned short count) {
-	if (element[0] == NULL) {
-		if (count == 2) cout << " Обект № 1" << endl;
-		element[0] = new T;
-		cin >> *dynamic_cast<T*>(element[0]);
-	} else if (ask_for("previous") == 'n') {
-		element[0] = new T;
-		cin >> *dynamic_cast<T*>(element[0]);
-	}
-	if (count == 2) {
-		if (element[1] == NULL) {
-			cout << " Обект № 2" << endl;
-			element[1] = new T;
-			cin >> *dynamic_cast<T*>(element[1]);
-		} else if (ask_for("previous") == 'n') {
-			element[1] = new T;
-			cin >> *dynamic_cast<T*>(element[1]);
+	assert(3 >= count && count >= 1);
+	for (int i = 0; i < count; i++) {
+		if (element[i] == NULL) {
+			if (count > 1)
+				cout << " Обект № " << i + 1 << endl;
+			element[i] = new T;
+			cin >> *dynamic_cast<T*>(element[i]);
+		} else if (previous<T>(i) == 'n') {
+			if (count > 1)
+				cout << " Обект № " << i + 1 << endl;
+			element[i] = new T;
+			cin >> *dynamic_cast<T*>(element[i]);
 		}
 	}
 }
 
 char exit() {
-	if (ask_for("resumption") == 'n') {
-		if (element[0] != NULL) {
-			delete element[0];
-			element[0] = NULL;
-		}
-		if (element[1] != NULL) {
-			delete element[1];
-			element[1] = NULL;
+	if (resumption() == 'n') {
+		for (int i = 0; i < sizeof(element) / sizeof(element[0]); i++) {
+			if (element[i] != NULL) {
+				delete[] element[i];
+				element[i] = NULL;
+			}
 		}
 		return 'n';
 	} else {
@@ -116,6 +124,9 @@ char line_program(int userInput) {
 		case 9:
 			cout << " --CASE 9--" << endll;
 			break;
+
+		case 0:
+			return 0;
 			
 		default:
 			error("Невалиден избор");
@@ -135,6 +146,9 @@ char point_program(int userInput) {
 				 cout << " не съвпада с точка ";
 			cout << dynamic_cast<Point*>(element[1])->get_name() << "." << endll;
 			break;
+
+		case 0:
+			return 0;
 
 		default:
 			error("Невалиден избор");
@@ -182,40 +196,64 @@ char vector_program(int userInput) {
 			cout << endl << std::setprecision(4) << std::fixed
 				 << " Векторът " <<
 				 dynamic_cast<Vector*>(element[0])->get_name();
-			if (dynamic_cast<Vector*>(element[0])->is_a_zero_vector())
-				cout << " е нулев вектор." << endll;
-			else
-				cout << " не е нулев вектор." << endll;
+			if (!dynamic_cast<Vector*>(element[0])->is_a_zero_vector())
+				cout << " не ";
+			cout << "е нулев вектор." << endll;
 			break;
 
-		case 5:
-			cout << " --CASE 5--" << endll;
+		case 5: // проверка за успоредност на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed
+				<< " Векторът " << dynamic_cast<Vector*>(element[0])->get_name();
+			try {
+				if (!dynamic_cast<Vector*>(element[0])->
+					parallel_to(*dynamic_cast<Vector*>(element[1])))
+					cout << " не ";
+				cout << "e успореден на вектора " 
+					 << dynamic_cast<Vector*>(element[0])->get_name() << endll;
+			} catch (VectorLengthException e) {}
 			break;
 			
-		case 6:
-			cout << " --CASE 6--" << endll;
+		case 6: // проверка за перпендикулярност на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed
+				<< " Векторът " << dynamic_cast<Vector*>(element[0])->get_name();
+			try {
+				if (!dynamic_cast<Vector*>(element[0])->
+					perpendicular_to(*dynamic_cast<Vector*>(element[1])))
+					cout << " не ";
+				cout << "e перпендикулярен на вектора "
+					<< dynamic_cast<Vector*>(element[0])->get_name() << endll;
+			} catch (VectorLengthException e) {}
 			break;
 			
-		case 7:
-			cout << " --CASE 7--" << endll;
+		case 7: // събиране на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed    << " "
+				 << dynamic_cast<Vector*>(element[0])->get_name() << " + "
+				 << dynamic_cast<Vector*>(element[1])->get_name() << " = "
+				 << *dynamic_cast<Vector*>(element[0]) + *dynamic_cast<Vector*>(element[1]) << endll;		
 			break;
 			
-		case 8: // Умножение на вектор с реално число
+		case 8: // умножение на вектор с реално число
 			cout << " --CASE 8--" << endll;
 			break;
 			
-		case 9:
+		case 9: // скаларно произведение на два вектора
 			cout << " --CASE 9--" << endll;
 			break;
 			
-		case 10:
+		case 10: // векторно произведение на два вектора
 			cout << " --CASE 10--" << endll;
 			break;
 			
-		case 11:
+		case 11: // смесено произведение на три вектора
 			cout << " --CASE 11--" << endll;
 			break;
 			
+		case 0:
+			return 0;
+
 		default:
 			error("Невалиден избор");
 	}
@@ -235,6 +273,9 @@ char segment_program(int userInput) {
 		case 3:
 			cout << " --CASE 3--" << endll;
 			break;
+
+		case 0:
+			return 0;
 			
 		default:
 			error("Невалиден избор");
@@ -275,6 +316,9 @@ char triangle_program(int userInput) {
 		case 4:
 			cout << " --CASE 4--" << endll;
 			break;
+
+		case 0:
+			return 0;
 			
 		default:
 			error("Невалиден избор");
