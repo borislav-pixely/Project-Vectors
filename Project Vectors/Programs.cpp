@@ -191,7 +191,7 @@ char vector_program(int userInput) {
 			} catch (VectorLengthException e) {}
 			break;
 
-		case 4: // проверка за нулев вектор
+		case 4: // Проверка за нулев вектор
 			get_object<Vector>(1);
 			cout << endl << std::setprecision(4) << std::fixed
 				 << " Векторът " <<
@@ -201,7 +201,7 @@ char vector_program(int userInput) {
 			cout << "е нулев вектор." << endll;
 			break;
 
-		case 5: // проверка за успоредност на два вектора
+		case 5: // Проверка за успоредност на два вектора
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed
 				<< " Векторът " << dynamic_cast<Vector*>(element[0])->get_name();
@@ -210,11 +210,11 @@ char vector_program(int userInput) {
 					parallel_to(*dynamic_cast<Vector*>(element[1])))
 					cout << " не ";
 				cout << "e успореден на вектора " 
-					 << dynamic_cast<Vector*>(element[0])->get_name() << endll;
+					 << dynamic_cast<Vector*>(element[1])->get_name() << "." << endll;
 			} catch (VectorLengthException e) {}
 			break;
 			
-		case 6: // проверка за перпендикулярност на два вектора
+		case 6: // Проверка за перпендикулярност на два вектора
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed
 				<< " Векторът " << dynamic_cast<Vector*>(element[0])->get_name();
@@ -223,32 +223,55 @@ char vector_program(int userInput) {
 					perpendicular_to(*dynamic_cast<Vector*>(element[1])))
 					cout << " не ";
 				cout << "e перпендикулярен на вектора "
-					<< dynamic_cast<Vector*>(element[0])->get_name() << endll;
+					<< dynamic_cast<Vector*>(element[1])->get_name() << "." << endll;
 			} catch (VectorLengthException e) {}
 			break;
 			
-		case 7: // събиране на два вектора
+		case 7: // Събиране на два вектора
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed    << " "
 				 << dynamic_cast<Vector*>(element[0])->get_name() << " + "
 				 << dynamic_cast<Vector*>(element[1])->get_name() << " = "
 				 << *dynamic_cast<Vector*>(element[0]) + *dynamic_cast<Vector*>(element[1]) << endll;		
 			break;
+
+		case 8: // Разлика на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed << " "
+				<< dynamic_cast<Vector*>(element[0])->get_name() << " - "
+				<< dynamic_cast<Vector*>(element[1])->get_name() << " = "
+				<< *dynamic_cast<Vector*>(element[0]) - *dynamic_cast<Vector*>(element[1]) << endll;
+			break;
+
+		case 9: // Умножение на вектор с реално число
 			
-		case 8: // умножение на вектор с реално число
-			cout << " --CASE 8--" << endll;
+			
+		case 10: // Скаларно произведение на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed 
+				 << " Скаларно произведение: "
+				 << dynamic_cast<Vector*>(element[0])->get_name() << " * "
+				 << dynamic_cast<Vector*>(element[1])->get_name() << " = "
+				 << *dynamic_cast<Vector*>(element[0]) * *dynamic_cast<Vector*>(element[1]) << endll;
 			break;
 			
-		case 9: // скаларно произведение на два вектора
-			cout << " --CASE 9--" << endll;
+		case 11: // Векторно произведение на два вектора
+			get_object<Vector>(2);
+			cout << endl << std::setprecision(4) << std::fixed
+				<< dynamic_cast<Vector*>(element[0])->get_name() << " ^ "
+				<< dynamic_cast<Vector*>(element[1])->get_name() << " = "
+				<< (*dynamic_cast<Vector*>(element[0]) ^ *dynamic_cast<Vector*>(element[1])) << endll;
 			break;
 			
-		case 10: // векторно произведение на два вектора
-			cout << " --CASE 10--" << endll;
-			break;
-			
-		case 11: // смесено произведение на три вектора
-			cout << " --CASE 11--" << endll;
+		case 12: // Смесено произведение на три вектора
+			get_object<Vector>(3);
+			cout << endl << std::setprecision(4) << std::fixed
+				<< " Смесено произведение: ("
+				<< dynamic_cast<Vector*>(element[0])->get_name() << " ^ "
+				<< dynamic_cast<Vector*>(element[1])->get_name() << ") * "
+				<< dynamic_cast<Vector*>(element[2])->get_name() << " = "
+				<< dynamic_cast<Vector*>(element[0])->operator()
+				 (*dynamic_cast<Vector*>(element[1]), *dynamic_cast<Vector*>(element[2])) << endll;
 			break;
 			
 		case 0:
