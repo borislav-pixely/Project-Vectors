@@ -117,6 +117,13 @@ std::istream& Vector::extractor(std::istream& in) {
     return in;
 }
 
+std::istream& Vector::extractor(std::ifstream& in) {
+	in >> x;
+	in >> y;
+	in >> z;
+	return in;
+}
+
 std::ostream& operator << (std::ostream& out, const Vector& vector) {
     return vector.inserter(out);
 }
