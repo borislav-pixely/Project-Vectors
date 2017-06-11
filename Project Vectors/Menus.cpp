@@ -11,21 +11,10 @@ using std::cin;
 void show(char*);
 void error(char*);
 
-int menu(char* menu, char* input) {
+int menu(char* menu) {
 	unsigned short userInput = 0;
-	if (input == "cin") {
-		show(menu);
-		cin >> userInput;
-	} else if (input == "file") {
-		ifstream file("input.txt");
-		if (!file) {
-			error("Файлът \"input.txt\" не съществува, моля създайте го");
-			return -1;
-		} else {
-			show(menu);
-			file >> userInput;
-		}
-	}
+	show(menu);
+	cin >> userInput;
 	cout << endl;
 	return userInput;
 }
