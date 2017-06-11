@@ -1,4 +1,6 @@
 #include <clocale>
+#include <fstream>
+#include <cstdio>
 #include <iostream>
 #define objects menu("main")
 #define Clear clear_console();
@@ -9,6 +11,8 @@
 #define Vector while (vector_program(menu("vector")) == 'y') {}
 #define Segment while (segment_program(menu("segment")) == 'y') {}
 #define Triangle while (triangle_program(menu("triangle")) == 'y') {}
+
+std::ofstream file("test.txt");
 
 int menu(char*);
 char line_program(int);

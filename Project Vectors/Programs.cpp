@@ -12,6 +12,7 @@
 #include "Line.h"
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 #include <assert.h>
 
 using std::endl;
@@ -72,6 +73,11 @@ void get_object(unsigned short count) {
 		}
 	}
 }
+/*
+void save_to_file(std::ostream& out) {
+	std::ofstream file("testouput.txt");
+	file << out;
+}*/
 
 char exit() {
 	if (resumption() == 'n') {
@@ -175,7 +181,8 @@ char vector_program(int userInput, std::ostream& out) {
 			try {
 				out << dynamic_cast<Vector*>(element[0])->direction()
 					 << endll;
-			} catch (VectorLengthException e) {}			
+			} catch (VectorLengthException e) {}
+			save_to_file(out);
 			break;
 
 		case 3: // Проекция на вектор върху друг вектор
@@ -243,9 +250,18 @@ char vector_program(int userInput, std::ostream& out) {
 				<< *dynamic_cast<Vector*>(element[0]) - *dynamic_cast<Vector*>(element[1]) << endll;
 			break;
 
-		case 9: // Умножение на вектор с реално число
-			
-			
+		case 9: { // Умножение на вектор с реално число
+			get_object<Vector>(1);
+			double real = 0.;
+			cout << " Въведете реално число: ";
+			cin >> real;
+			cout << endl << std::setprecision(4) << std::fixed
+				<< " Умножение с реално число: "
+				<< dynamic_cast<Vector*>(element[0])->get_name()
+				<< " * " << real << " = "
+				<< *dynamic_cast<Vector*>(element[0]) * real << endll;
+			break;
+		}			
 		case 10: // Скаларно произведение на два вектора
 			get_object<Vector>(2);
 			out << endl << std::setprecision(4) << std::fixed 
