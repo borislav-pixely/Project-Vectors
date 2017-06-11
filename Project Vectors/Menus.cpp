@@ -11,50 +11,22 @@ using std::cin;
 void show(char*);
 void error(char*);
 
-char triangle_program(int);
-char segment_program(int);
-char vector_program(int);
-char point_program(int);
-char line_program(int);
-
-void file() {
-	ifstream file("input.txt");
-	if (!file)
-		error("Файлът \"input.txt\" не бе открит");
-	double line;
-	int a, b, i = 0;
-	while (file >> line) {
-		if (i == 0) {
-			a = line;
-			i++;
-		} else {
-			b = line;
-			switch (a) {
-				case 1:
-					point_program(b);
-					break;
-				case 2:
-					vector_program(b);
-					break;
-				case 3:
-					line_program(b);
-					break;
-				case 4:
-					segment_program(b);
-					break;
-				case 5:
-					triangle_program(b);
-					break;
-			}
-		}	
-	}
-}
-
-int menu(char* menu) {
+int menu(char* menu, char* input) {
 	unsigned short userInput = 0;
-	show(menu);
-	cin >> userInput;
-	cout << endl;	
+	if (input == "cin") {
+		show(menu);
+		cin >> userInput;
+	} else if (input == "file") {
+		ifstream file("input.txt");
+		if (!file) {
+			error("Файлът \"input.txt\" не съществува, моля създайте го");
+			return -1;
+		} else {
+			show(menu);
+			file >> userInput;
+		}
+	}
+	cout << endl;
 	return userInput;
 }
 
