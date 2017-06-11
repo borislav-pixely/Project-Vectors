@@ -12,7 +12,6 @@
 #include "Line.h"
 #include <iomanip>
 #include <iostream>
-#include <fstream>
 #include <assert.h>
 
 using std::endl;
@@ -64,18 +63,12 @@ void get_object(unsigned short count) {
 			if (count > 1)
 				cout << " Обект № " << i + 1 << endl;
 			element[i] = new T;
-			std::ifstream file("input.txt");
-			int a, b;
-			file >> a, b;
-			file >> *dynamic_cast<T*>(element[i]);
+			cin >> *dynamic_cast<T*>(element[i]);
 		} else if (previous<T>(i) == 'n') {
 			if (count > 1)
 				cout << " Обект № " << i + 1 << endl;
 			element[i] = new T;
-			std::ifstream file("input.txt");
-			int a, b;
-			file >> a, b;
-			file >> *dynamic_cast<T*>(element[i]);
+			cin >> *dynamic_cast<T*>(element[i]);
 		}
 	}
 }
@@ -168,41 +161,41 @@ char vector_program(int userInput) {
 		case 1:	// Изчисляване на дължина на вектор
 			get_object<Vector>(1);
 			cout << endl << std::setprecision(4) << std::fixed
-				<< " Вектор " <<
-				dynamic_cast<Vector*>(element[0])->get_name()
-				<< " има дължина " <<
-				dynamic_cast<Vector*>(element[0])->length() << endll;
+				 << " Вектор " << 
+				 dynamic_cast<Vector*>(element[0])->get_name()
+				 << " има дължина " << 
+				 dynamic_cast<Vector*>(element[0])->length() << endll;
 			break;
 
 		case 2: // Изчисляване на посока на вектор
 			get_object<Vector>(1);
 			cout << endl << std::setprecision(4) << std::fixed
-				<< " Вектор " <<
-				dynamic_cast<Vector*>(element[0])->get_name();
+				 << " Вектор " <<
+				 dynamic_cast<Vector*>(element[0])->get_name();
 			try {
 				cout << dynamic_cast<Vector*>(element[0])->direction()
-					<< endll;
-			} catch (VectorLengthException e) {}
+					 << endll;
+			} catch (VectorLengthException e) {}			
 			break;
 
 		case 3: // Проекция на вектор върху друг вектор
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed
-				<< " Вектор " <<
-				dynamic_cast<Vector*>(element[0])->get_name()
-				<< " проектиран върху вектор " <<
-				dynamic_cast<Vector*>(element[1])->get_name();
+				 << " Вектор " <<
+				 dynamic_cast<Vector*>(element[0])->get_name()
+				 << " проектиран върху вектор " <<
+				 dynamic_cast<Vector*>(element[1])->get_name();
 			try {
 				cout << dynamic_cast<Vector*>(element[0])->
-					projection(*dynamic_cast<Vector*>(element[1])) << endll;
+						projection(*dynamic_cast<Vector*>(element[1])) << endll;
 			} catch (VectorLengthException e) {}
 			break;
 
 		case 4: // Проверка за нулев вектор
 			get_object<Vector>(1);
 			cout << endl << std::setprecision(4) << std::fixed
-				<< " Векторът " <<
-				dynamic_cast<Vector*>(element[0])->get_name();
+				 << " Векторът " <<
+				 dynamic_cast<Vector*>(element[0])->get_name();
 			if (!dynamic_cast<Vector*>(element[0])->is_a_zero_vector())
 				cout << " не ";
 			cout << "е нулев вектор." << endll;
@@ -216,11 +209,11 @@ char vector_program(int userInput) {
 				if (!dynamic_cast<Vector*>(element[0])->
 					parallel_to(*dynamic_cast<Vector*>(element[1])))
 					cout << " не ";
-				cout << "e успореден на вектора "
-					<< dynamic_cast<Vector*>(element[1])->get_name() << "." << endll;
+				cout << "e успореден на вектора " 
+					 << dynamic_cast<Vector*>(element[1])->get_name() << "." << endll;
 			} catch (VectorLengthException e) {}
 			break;
-
+			
 		case 6: // Проверка за перпендикулярност на два вектора
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed
@@ -233,13 +226,13 @@ char vector_program(int userInput) {
 					<< dynamic_cast<Vector*>(element[1])->get_name() << "." << endll;
 			} catch (VectorLengthException e) {}
 			break;
-
+			
 		case 7: // Събиране на два вектора
 			get_object<Vector>(2);
-			cout << endl << std::setprecision(4) << std::fixed << " "
-				<< dynamic_cast<Vector*>(element[0])->get_name() << " + "
-				<< dynamic_cast<Vector*>(element[1])->get_name() << " = "
-				<< *dynamic_cast<Vector*>(element[0]) + *dynamic_cast<Vector*>(element[1]) << endll;
+			cout << endl << std::setprecision(4) << std::fixed    << " "
+				 << dynamic_cast<Vector*>(element[0])->get_name() << " + "
+				 << dynamic_cast<Vector*>(element[1])->get_name() << " = "
+				 << *dynamic_cast<Vector*>(element[0]) + *dynamic_cast<Vector*>(element[1]) << endll;		
 			break;
 
 		case 8: // Разлика на два вектора
@@ -250,18 +243,9 @@ char vector_program(int userInput) {
 				<< *dynamic_cast<Vector*>(element[0]) - *dynamic_cast<Vector*>(element[1]) << endll;
 			break;
 
-		case 9: { // Умножение на вектор с реално число
-			get_object<Vector>(1);
-			double real = 0.;
-			cout << " Въведете реално число: ";
-			cin >> real;
-			cout << endl << std::setprecision(4) << std::fixed
-				 << " Умножение с реално число: "
-				 << dynamic_cast<Vector*>(element[0])->get_name()
-			 	 << " * " << real << " = "
-				 << *dynamic_cast<Vector*>(element[0]) * real << endll;
-			break;
-			}
+		case 9: // Умножение на вектор с реално число
+			
+			
 		case 10: // Скаларно произведение на два вектора
 			get_object<Vector>(2);
 			cout << endl << std::setprecision(4) << std::fixed 

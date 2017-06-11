@@ -1,23 +1,25 @@
 #include <clocale>
-#define objects menu("main")
-#define Exit running = false;
+#define objects menu("main", input)
 #define Clear clear_console();
+#define Exit running = false;
 #define Error error("Невалиден избор");
-#define Line while (line_program(menu("line")) == 'y') {}
-#define Point while (point_program(menu("point")) == 'y') {}
-#define Vector while (vector_program(menu("vector")) == 'y') {}
-#define Segment while (segment_program(menu("segment")) == 'y') {}
-#define Triangle while (triangle_program(menu("triangle")) == 'y') {}
+#define Line while (line_program(menu("line", input)) == 'y') {}
+#define Point while (point_program(menu("point", input)) == 'y') {}
+#define Vector while (vector_program(menu("vector", input)) == 'y') {}
+#define Segment while (segment_program(menu("segment", input)) == 'y') {}
+#define Triangle while (triangle_program(menu("triangle", input)) == 'y') {}
+#define File input = "file";
+#define Fix input = "cin";
+char* input = "cin";
 
-int menu(char*);
-char triangle_program(int);
-char segment_program(int);
-char vector_program(int);
-char point_program(int);
+int menu(char*, char*);
 char line_program(int);
+char point_program(int);
+char vector_program(int);
+char segment_program(int);
+char triangle_program(int);
 void clear_console();
 void error(char*);
-void file();
 
 int main(int argc, const char* argv[]) {
 
@@ -32,8 +34,9 @@ int main(int argc, const char* argv[]) {
             case 4:		Segment		break;
             case 5:		Triangle	break;
 			case 6:		Clear		break;
-			case 7:		file();		break;
+			case 7:		File		break;
             case 0:		Exit		break;
+			case -1:	Fix 		break;
 			default:	Error		break;
         }
     } while (running);
