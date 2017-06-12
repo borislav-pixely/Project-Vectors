@@ -1,6 +1,4 @@
 #include <clocale>
-#include <fstream>
-#include <cstdio>
 #include <iostream>
 #define objects menu("main")
 #define Clear clear_console();
@@ -12,16 +10,14 @@
 #define Segment while (segment_program(menu("segment")) == 'y') {}
 #define Triangle while (triangle_program(menu("triangle")) == 'y') {}
 
-std::ofstream file("test.txt");
-
 int menu(char*);
 char line_program(int);
 char point_program(int);
-char vector_program(int, std::ostream& = std::cout);
+char vector_program(int);
 char segment_program(int);
 char triangle_program(int);
+void error(char*, char* = "");
 void clear_console();
-void error(char*);
 
 int main(int argc, const char* argv[]) {
 
@@ -36,6 +32,8 @@ int main(int argc, const char* argv[]) {
             case 4:		Segment		break;
             case 5:		Triangle	break;
 			case 6:		Clear		break;
+			case 7:		std::cerr << " Missing" << std::endl; 
+									break;
             case 0:		Exit		break;
 			default:	Error		break;
         }

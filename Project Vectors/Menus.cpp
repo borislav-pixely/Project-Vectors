@@ -9,7 +9,7 @@ using std::cout;
 using std::cin;
 
 void show(char*);
-void error(char*);
+void error(char*, char* = "");
 
 int menu(char* menu) {
 	unsigned short userInput = 0;
