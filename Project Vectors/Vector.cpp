@@ -42,10 +42,6 @@ Vector Vector::direction() const {
     return Vector("- посока", x / length, y / length, z / length);
 }
 
-String Vector::get_name() const {
-	return name.get_string();
-}
-
 Vector Vector::projection(const Vector& proj) const {
 	if (proj.length() == 0)
 		throw VectorLengthException();
@@ -96,9 +92,32 @@ double Vector::operator () (const Vector& V, const Vector& W) const {
     return (*this ^ V) * W;
 }
 
+double Vector::get_x() const {
+	return x;
+}
+
+double Vector::get_y() const {
+	return y;
+}
+
+double Vector::get_z() const {
+	return z;
+}
+
+String Vector::get_name() const {
+	return name.get_string();
+}
+
+Vector& Vector::operator << (double value) {
+	if (x == 0.) x = value;
+	else if (y == 0.) y = value;
+	else if (z == 0.) z = value;
+	return *this;
+}
+
 std::ostream& Vector::inserter(std::ostream& out) const {
 	return out << std::setprecision(4) << std::fixed
-			   << "\n Вектор " << name
+			   << "\n Вектор " << name.get_string()
 			   << "\n ( " << x << " )"
 			   << "\n ( " << y << " )"
 			   << "\n ( " << z << " )";

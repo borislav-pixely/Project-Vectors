@@ -8,17 +8,22 @@
 class Point : public Element {
     
 public:
-    Point(String name = String(), double x = 0., double y = 0., double z = 0.);
+    Point(String name = "P", double x = 0., double y = 0., double z = 0.);
     Point& operator = (const Point&);
     Point(const Point&);
     
     bool operator == (const Point&) const;
     bool operator == (int) const;
     
+	String get_name() const;
     double get_x() const;
     double get_y() const;
     double get_z() const;
-	String get_name() const;
+	int set_x(double);
+	int set_y(double);
+	int set_z(double);
+
+	Point& operator << (double);
     
     std::ostream& inserter(std::ostream&) const;
     std::istream& extractor(std::istream&);

@@ -8,19 +8,22 @@
 class Segment : public Line {
     
 public:
-    Segment(const Line&);
+    Segment(String = "S", Line = Line(), double = 0);
     
     double length() const;
     Point center() const;
     
     bool operator == (const Point&) const;
+
+	Segment& operator << (double);
     
     std::ostream& inserter(std::ostream&) const;
     std::istream& extractor(std::istream&);
     
 private:
-    Line line;
-    double t[2];
+	String name;
+	Line line;
+	double t;
     
 };
 

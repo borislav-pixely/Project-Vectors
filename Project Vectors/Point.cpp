@@ -42,6 +42,28 @@ double Point::get_z() const {
     return z;
 }
 
+int Point::set_x(double x) {
+	this->x = x;
+	return 0;
+}
+
+int Point::set_y(double y) {
+	this->y = y;
+	return 0;
+}
+
+int Point::set_z(double z) {
+	this->z = z;
+	return 0;
+}
+
+Point& Point::operator << (double value) {
+	if (x == 0) x = value;
+	else if (y == 0) y = value;
+	else if (z == 0) z = value;
+	return *this;
+}
+
 String Point::get_name() const {
 	return name.get_string();
 }

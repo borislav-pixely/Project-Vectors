@@ -1,7 +1,8 @@
 #include "Tetrahedron.h"
 
-Tetrahedron::Tetrahedron(const Point& A, const Point& B, const Point& C, const Point& D) :
-						 A(A), B(B), C(C), D(D) {}
+Tetrahedron::Tetrahedron(String name, const Point& A, const Point& B, 
+						 const Point& C, const Point& D) :
+						 name(name), A(A), B(B), C(C), D(D) {}
 
 String Tetrahedron::get_name() const {
 	return name.get_string();

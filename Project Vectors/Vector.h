@@ -9,7 +9,7 @@
 class Vector : public Point {
     
 public:
-    Vector(String name = String(), double x = 0., double y = 0., double z = 0.);
+    Vector(String name = "V", double x = 0., double y = 0., double z = 0.);
     Vector(const Point& A, const Point& B);
     Vector& operator = (const Vector&);
     Vector(const Vector&);
@@ -29,6 +29,12 @@ public:
     double operator * (const Vector&) const;
     Vector operator ^ (const Vector&) const;
     double operator () (const Vector&, const Vector&) const;
+
+	double get_x() const;
+	double get_y() const;
+	double get_z() const;
+
+	Vector& operator << (double);
     
     std::ostream& inserter(std::ostream&) const;
     std::istream& extractor(std::istream&);

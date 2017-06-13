@@ -4,11 +4,17 @@ String::String(char* string) {
 	if (string == ".") {
 		length = 0;
 	} else {
-		length = strlen(string);
-		this->string = new char[length + 1];
-		for (size_t i = 0; i < length; i++)
-			this->string[i] = string[i];
-		this->string[length] = '\0';
+		try {
+			length = strlen(string);
+			this->string = new char[length + 1];
+			for (size_t i = 0; i < length; i++)
+				this->string[i] = string[i];
+			this->string[length] = '\0';
+		} catch (...) {
+			length = 5;
+			this->string = "Error";
+		}
+		
 	}
 }
 

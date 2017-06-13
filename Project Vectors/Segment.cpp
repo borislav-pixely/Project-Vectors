@@ -1,6 +1,7 @@
 #include "Segment.h"
 
-Segment::Segment(const Line& line) : line(line) {}
+Segment::Segment(String name, Line line, double t) : 
+				 name(name), line(line), t(t) {}
 
 double Segment::length() const {
     return 0.00;
@@ -10,17 +11,22 @@ Point Segment::center() const {
 	return *new Point();
 }
 
-bool Segment::operator == (const Point& point) const {
-    return true;
+bool Segment::operator == (const Point& C) const {
+	return false;
+}
+
+Segment& Segment::operator << (double value) {
+	line << value;
+	return *this;
 }
 
 std::ostream& Segment::inserter(std::ostream& out) const {
-    return out << line;
+	return out << line;
 }
 
 std::istream& Segment::extractor(std::istream& in) {
-    std::cout << "Моля, въведете стойности за ?: ";
-    in >> line;
+    std::cout << "Моля, въведете стойности за отсечката (латиница): ";
+	in >> line;
     return in;
 }
 

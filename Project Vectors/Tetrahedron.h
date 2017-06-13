@@ -8,7 +8,7 @@
 class Tetrahedron : public Point {
 
 public:
-	Tetrahedron(const Point& = Point(), const Point& = Point(), 
+	Tetrahedron(String name = "Tetra", const Point& = Point(), const Point& = Point(), 
 				const Point& = Point(), const Point& = Point());
 
 	String get_name() const;

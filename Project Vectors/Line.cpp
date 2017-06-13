@@ -1,30 +1,36 @@
 #include "Line.h"
 
-Line::Line(const Point& point, const Vector& vector) :
-           point(point), vector(vector) {}
+Line::Line(String name, const Point& point, const Vector& vector) :
+           name(name), point(point), vector(vector) {}
 
 Line::Line(const Line &line) {
 	vector = line.vector;
 	point = line.point;
 }
 
-Line::Line(const Point& A, const Point& B) : 
-	       point(A), vector(*new Vector(A, B)) {}
+Line::Line(const Point& A, const Point& B, String name) :
+	       name(name), point(A), vector(Vector(A, B)) {}
+
+String Line::get_name() const {
+	return name.get_string();
+}
 
 Vector Line::direction() const {
-	return Vector();
+	return vector;
 }
 
 Vector Line::normal_vector() const {
-	return Vector();
+	return Vector("", -vector.get_x(), vector.get_y(), vector.get_z());
 }
 
 double Line::angle_between(const Line& right) const {
-    return 0.00;
+    return acos(abs(vector*right.vector) / vector.length() * right.vector.length());
 }
 
-bool Line::operator + (const Point& point) const {
-    return true;
+bool Line::operator + (const Point& right) const {
+	return (point.get_x() == right.get_x() * vector.get_x()
+			&& point.get_y() == right.get_y() * vector.get_y()
+			&& point.get_z() == right.get_z() * vector.get_z());
 }
 
 bool Line::operator || (const Line& right) const {
@@ -47,16 +53,22 @@ bool Line::operator | (const Line& right) const {
     return true;
 }
 
+Line& Line::operator << (double value) {
+	point << value;
+	vector << value;
+	return *this;
+}
+
 std::ostream& Line::inserter(std::ostream& out) const {
-    return out << vector << point;
+	return out << vector << point;
 }
 
 std::istream& Line::extractor(std::istream& in) {
-	std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ Ð¸Ð¼Ðµ Ð·Ð° Ð¿Ñ€Ð°Ð²Ð°Ñ‚Ð° (Ð»Ð°Ñ‚Ð¸Ð½Ð¸Ñ†Ð°): ";
+	std::cout << " Ìîëÿ, âúâåäåòå èìå çà ïðàâàòà (ëàòèíèöà): ";
 	in >> name;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚Ð¸ Ð·Ð° Ð²ÐµÐºÑ‚Ð¾Ñ€Ð° Ð½Ð° Ð¿Ñ€Ð°Ð²Ð°Ñ‚Ð°: ";
+	std::cout << " Ìîëÿ, âúâåäåòå ñòîéíîñòè çà âåêòîðà íà ïðàâàòà: " << std::endl;
     in >> vector;
-    std::cout << "ÐœÐ¾Ð»Ñ, Ð²ÑŠÐ²ÐµÐ´ÐµÑ‚Ðµ ÑÑ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚Ð¸ Ð·Ð° Ñ‚Ð¾Ñ‡ÐºÐ°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð°Ð²Ð°Ñ‚Ð°: ";
+	std::cout << " Ìîëÿ, âúâåäåòå ñòîéíîñòè çà òî÷êàòà íà ïðàâàòà: " << std::endl;
 	in >> point;
     return in;
 }

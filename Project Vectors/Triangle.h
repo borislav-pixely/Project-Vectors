@@ -8,13 +8,16 @@
 class Triangle : public Point {
     
 public:
-    Triangle(const Point& = Point(), const Point& = Point(), const Point& = Point());
+    Triangle(String name = "T", const Point& = Point(), 
+			 const Point& = Point(), const Point& = Point());
     
     double area() const;
     double perimiter() const;
     const char* type() const;
     Point medicenter() const;
 	String get_name() const;
+
+	Triangle& operator << (double);
 	
     std::ostream& inserter(std::ostream&) const;
     std::istream& extractor(std::istream&);
